@@ -8,11 +8,11 @@ resource "azurerm_virtual_network" "msdn" {
 }
 
 resource "azurerm_subnet" "msdn1" {
-  name                  = "${var.base_name}-vnet-subnet1"
-  resource_group_name   = data.azurerm_resource_group.rg.name
-  virtual_network_name  = azurerm_virtual_network.msdn.name
-  address_prefixes      = [cidrsubnet(var.vnet_cidr, 2, 0)]
-  service_endpoints     = [
+  name                 = "${var.base_name}-vnet-subnet1"
+  resource_group_name  = data.azurerm_resource_group.rg.name
+  virtual_network_name = azurerm_virtual_network.msdn.name
+  address_prefixes     = [cidrsubnet(var.vnet_cidr, 2, 0)]
+  service_endpoints = [
     "Microsoft.AzureActiveDirectory",
     "Microsoft.ContainerRegistry",
     "Microsoft.KeyVault",
@@ -40,14 +40,14 @@ resource "azurerm_network_security_rule" "inbound_deny_all" {
 
   name = "inbound-deny-all"
 
-  priority                    = 4096
-  direction                   = "Inbound"
-  access                      = "Deny"
-  protocol                    = "*"
-  source_address_prefix       = "*"
-  source_port_range           = "*"
-  destination_address_prefix  = "*"
-  destination_port_range      = "*"
+  priority                   = 4096
+  direction                  = "Inbound"
+  access                     = "Deny"
+  protocol                   = "*"
+  source_address_prefix      = "*"
+  source_port_range          = "*"
+  destination_address_prefix = "*"
+  destination_port_range     = "*"
 }
 
 resource "azurerm_network_security_rule" "outbound_deny_all" {
@@ -56,12 +56,12 @@ resource "azurerm_network_security_rule" "outbound_deny_all" {
 
   name = "outbound-deny-all"
 
-  priority                    = 4096
-  direction                   = "Outbound"
-  access                      = "Deny"
-  protocol                    = "*"
-  source_address_prefix       = "*"
-  source_port_range           = "*"
-  destination_address_prefix  = "*"
-  destination_port_range      = "*"
+  priority                   = 4096
+  direction                  = "Outbound"
+  access                     = "Deny"
+  protocol                   = "*"
+  source_address_prefix      = "*"
+  source_port_range          = "*"
+  destination_address_prefix = "*"
+  destination_port_range     = "*"
 }
