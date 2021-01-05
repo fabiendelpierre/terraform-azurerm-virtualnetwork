@@ -65,3 +65,11 @@ resource "azurerm_network_security_rule" "outbound_deny_all" {
   destination_address_prefix  = "*"
   destination_port_range      = "*"
 }
+
+resource "azurerm_network_security_group" "msdn2" {
+  name                = "${azurerm_subnet.msdn1.name}-nsg"
+  resource_group_name = data.azurerm_resource_group.rg.name
+  location            = var.location
+
+  tags = var.tags
+}
